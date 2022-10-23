@@ -40,9 +40,10 @@ try:
 
         #print all values
         print(img)
+        
         #insert data into excel
-        # sheet.append([rank, name, year, rating])
-
+        sheet.append([rank, name, year, rating])
+        break
 except Exception as e:
     print(e)
     exit()
