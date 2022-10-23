@@ -1,10 +1,15 @@
-from urllib.request import Request, urlopen
+import requests
+from bs4 import BeautifulSoup
+import openpyxl
 
+try:
+    soures = requests.get('https://www.guessfactory.com/us/en/sale/women/view-all')
+    soures.raise_for_status
 
+    soup = BeautifulSoup(soures.text, 'html.parser')
+    products = soup.select('row product-grid ')
+    print(products)
 
-req = Request(
-    url='https://www.guessfactory.com/us/en/sale/women/view-all',
-    headers={'User-Agent': 'Mozilla/5.0'}
-)
-webpage = urlopen(req).read()
-soup = BeautifulSoup(webpage, 'lxml')
+except Exception as e:
+    print(e)
+    exit()
