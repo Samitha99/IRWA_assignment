@@ -21,10 +21,11 @@ try:
     for product in products:
         pNumber = n
         productName = product.find('h3', class_="pdp-link product-tile__pdp-link h3-pdp").a.text.strip()
-        productPrice = product.find('span', class_="price__red-color text-nowrap").text.strip().replace('now ', '')
+        productPrice = product.find('span', class_="price__red-color text-nowrap").get_text(strip=True).split('$')[1]
+        productOldPrice = product.find('span', class_="price__strike-through").text.strip().replace('$', '')
         n+=1
         
-        print(productPrice)
+        print(productOldPrice)
         break
 
 except urllib.error.HTTPError as e:
