@@ -17,7 +17,7 @@ try:
     # print(webpage)
     soup = BeautifulSoup(webpage, 'html.parser')
     # print(soup)
-    products = soup.find_all('ul', class_="product-tile left small-6 medium-3")
+    products = soup.find_all('li', class_="product-tile left small-6 medium-3")
     # print(len(products))
 
     n = 1
