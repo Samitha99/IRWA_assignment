@@ -3,9 +3,9 @@ import re
 import openpyxl
 from bs4 import BeautifulSoup
 
-# excel = openpyxl.Workbook()
-# excelS = excel.active
-# excelS.append(["Product Number" ,"Product Name" ,"New Price" ,"Old Price" ,"discount" ])
+excel = openpyxl.Workbook()
+excelS = excel.active
+excelS.append(["Product Number" ,"Product Name" ,"New Price" ,"Old Price" ,"discount" ])
 
 try:
   soures = requests.get('https://odel.lk/deal-products')
@@ -23,7 +23,7 @@ try:
     oldPrice = product.find("del").text.strip().replace('LKR ', '')
     discount = product.find("div", class_="product_tag_discount").text
     num = num + 1
-    # excelS.append([productNumber ,name ,price ,oldPrice ,discount ])
+    excelS.append([productNumber ,name ,price ,oldPrice ,discount ])
     
 
 
@@ -31,4 +31,4 @@ except Exception as e:
   print(e)
   exit()
 
-# excel.save(filename = 'Product Detailsv1.xlsx')
+excel.save(filename = 'Product Detailsv1.xlsx')

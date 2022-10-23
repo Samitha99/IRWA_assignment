@@ -4,6 +4,9 @@ import openpyxl
 import urllib.request
 from urllib.request import Request, urlopen
 
+excel = openpyxl.Workbook()
+excelSheet = excel.active
+excelSheet.append(["Product Number" ,"Product Name" ,"New Price" ,"Old Price" ,"discount" ])
 
 try:
     req = Request(
@@ -19,15 +22,15 @@ try:
 
     n = 1
     for product in products:
-        pNumber = n
+        productNumber = n
         productName = product.find('h3', class_="pdp-link product-tile__pdp-link h3-pdp").a.text.strip()
         productPrice = product.find('span', class_="price__red-color text-nowrap").get_text(strip=True).split('$')[1]
         productOldPrice = product.find('span', class_="price__strike-through").text.strip().replace('$', '')
-        discount = product.find('span', class_="price__red-color d-inline-block text-nowrap").text.strip().split('%')[0].replace('(', '')
+        discount = product.find('span', class_="price__red-color d-inline-block text-nowrap").text.strip().split(' ')[0].replace('(', '')
+        excelSheet.append([productNumber ,productName ,productPrice ,productOldPrice ,discount ])
         n+=1
         
-        print(discount)
-        break
-
 except urllib.error.HTTPError as e:
     body = e.read().decode() 
+
+excel.save(filename = 'Product Detail.xlsx')

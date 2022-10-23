@@ -49,4 +49,4 @@ except Exception as e:
     exit()
 
 #save the excel file
-# excel.save('IMDB Top 250 Moveis.xlsx')
+excel.save('IMDB Top 250 Moveis.xlsx')
