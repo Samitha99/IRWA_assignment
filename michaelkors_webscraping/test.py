@@ -2,7 +2,7 @@ import requests
 from bs4 import BeautifulSoup
 
 try:
-    soures = requests.get('https://odel.lk/deal-products')
+    soures = requests.get('https://www.michaelkors.com/sale/men/_/N-28au')
     soures.raise_for_status
     print(soures)
 
